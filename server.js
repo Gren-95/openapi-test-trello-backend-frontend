@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const cors = require('cors');
 const path = require('path');
+const swaggerDocument = require('./swagger.json');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -11,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Load OpenAPI specification from YAML file
-const swaggerDocument = YAML.load(path.join(__dirname, 'openapi.yaml'));
+const swaggerDocumentYAML = YAML.load(path.join(__dirname, 'openapi.yaml'));
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
